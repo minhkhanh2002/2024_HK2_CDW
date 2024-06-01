@@ -19,24 +19,26 @@ public class User {
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@Column(name = "address")
-	private String address;
+	@Column(name = "username")
+	private String userName;
+	@Column(name = "password")
+	private String passWord;
+	@Column(name = "enabled")
+	private Boolean enabled;
+	@Column(name = "fullname")
+	private String fullName;
+	@Column(name = "gender")
+	private Boolean gender;
 	@Column(name = "birthday")
 	private Date birthday;
+	@Column(name = "address")
+	private String address;
 	@Column(name = "email")
 	private String email;
-	@Column(name = "enabled")
-	private boolean enabled;
-	@Column(name = "fullname")
-	private String fullname;
-	@Column(name = "gender")
-	private boolean gender;
-	@Column(name = "password")
-	private String password;
+	@Column(name = "cccd")
+	private String cccd;
 	@Column(name = "telephone")
 	private String telephone;
-	@Column(name = "username")
-	private String username;
 	
 	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
 	private Set<UserRole> userRoles;
@@ -48,19 +50,20 @@ public class User {
 	}
 
 
-	public User(Long id, String address, Date birthday, String email, boolean enabled, String fullname, boolean gender,
-			String password, String telephone, String username, Set<UserRole> userRoles) {
+	public User(Long id, String userName, String passWord, Boolean enabled, String fullName, Boolean gender,
+			Date birthday, String address, String email, String cccd, String telephone, Set<UserRole> userRoles) {
 		super();
 		this.id = id;
-		this.address = address;
-		this.birthday = birthday;
-		this.email = email;
+		this.userName = userName;
+		this.passWord = passWord;
 		this.enabled = enabled;
-		this.fullname = fullname;
+		this.fullName = fullName;
 		this.gender = gender;
-		this.password = password;
+		this.birthday = birthday;
+		this.address = address;
+		this.email = email;
+		this.cccd = cccd;
 		this.telephone = telephone;
-		this.username = username;
 		this.userRoles = userRoles;
 	}
 
@@ -75,13 +78,53 @@ public class User {
 	}
 
 
-	public String getAddress() {
-		return address;
+	public String getUserName() {
+		return userName;
 	}
 
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+
+	public String getPassWord() {
+		return passWord;
+	}
+
+
+	public void setPassWord(String passWord) {
+		this.passWord = passWord;
+	}
+
+
+	public Boolean getEnabled() {
+		return enabled;
+	}
+
+
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
+	}
+
+
+	public String getFullName() {
+		return fullName;
+	}
+
+
+	public void setFullName(String fullName) {
+		this.fullName = fullName;
+	}
+
+
+	public Boolean getGender() {
+		return gender;
+	}
+
+
+	public void setGender(Boolean gender) {
+		this.gender = gender;
 	}
 
 
@@ -95,6 +138,16 @@ public class User {
 	}
 
 
+	public String getAddress() {
+		return address;
+	}
+
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+
 	public String getEmail() {
 		return email;
 	}
@@ -105,43 +158,13 @@ public class User {
 	}
 
 
-	public boolean isEnabled() {
-		return enabled;
+	public String getCccd() {
+		return cccd;
 	}
 
 
-	public void setEnabled(boolean enabled) {
-		this.enabled = enabled;
-	}
-
-
-	public String getFullname() {
-		return fullname;
-	}
-
-
-	public void setFullname(String fullname) {
-		this.fullname = fullname;
-	}
-
-
-	public boolean isGender() {
-		return gender;
-	}
-
-
-	public void setGender(boolean gender) {
-		this.gender = gender;
-	}
-
-
-	public String getPassword() {
-		return password;
-	}
-
-
-	public void setPassword(String password) {
-		this.password = password;
+	public void setCccd(String cccd) {
+		this.cccd = cccd;
 	}
 
 
@@ -155,16 +178,6 @@ public class User {
 	}
 
 
-	public String getUsername() {
-		return username;
-	}
-
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-
 	public Set<UserRole> getUserRoles() {
 		return userRoles;
 	}
@@ -175,5 +188,4 @@ public class User {
 	}
 
 
-	
-}
+	}
