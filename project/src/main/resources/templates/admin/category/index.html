@@ -42,62 +42,47 @@
 								
 							</div>
 
-							<div class="box-body">
+						<!--   	<div class="box-body">
 								<table class="table table-bordered">
 									<tbody>
 										<tr>
-											<th style="width: 10px">#</th>
-											<th>Task</th>
-											<th>Progress</th>
-											<th style="width: 40px">Label</th>
+											<th style="width: 10px">ID</th>
+											<th>Category Name</th>
+											<th>Status</th>
+											<th style="width: 40px">Action</th>
 										</tr>
-										<tr>
-											<td>1.</td>
-											<td>Update software</td>
-											<td>
-												<div class="progress progress-xs">
-													<div class="progress-bar progress-bar-danger"
-														style="width: 55%"></div>
-												</div>
-											</td>
-											<td><span class="badge bg-red">55%</span></td>
+										<tr th:foreach="category :${list}">
+											<td></td>
+											<td th:text="${category.categoryName}"></td>
+											
+											<td th:if="${category.categoryStatus}"><span class="label label-success">Hiện</span></td>
+											<td th:if="${!category.categoryStatus}"><span class="label label-danger">Ẩn</span></td>
+											<td></td>
 										</tr>
-										<tr>
-											<td>2.</td>
-											<td>Clean database</td>
-											<td>
-												<div class="progress progress-xs">
-													<div class="progress-bar progress-bar-yellow"
-														style="width: 70%"></div>
-												</div>
-											</td>
-											<td><span class="badge bg-yellow">70%</span></td>
-										</tr>
-										<tr>
-											<td>3.</td>
-											<td>Cron job running</td>
-											<td>
-												<div class="progress progress-xs progress-striped active">
-													<div class="progress-bar progress-bar-primary"
-														style="width: 30%"></div>
-												</div>
-											</td>
-											<td><span class="badge bg-light-blue">30%</span></td>
-										</tr>
-										<tr>
-											<td>4.</td>
-											<td>Fix and squish bugs</td>
-											<td>
-												<div class="progress progress-xs progress-striped active">
-													<div class="progress-bar progress-bar-success"
-														style="width: 90%"></div>
-												</div>
-											</td>
-											<td><span class="badge bg-green">90%</span></td>
-										</tr>
+										
 									</tbody>
 								</table>
-							</div>
+							</div> -->
+							
+						<!--  	<div class="box-body">
+  <table class="table table-bordered">
+    <tbody>
+      <tr>
+        <th style="width: 10px">ID</th>
+        <th>Category Name</th>
+        <th>Status</th>
+        <th style="width: 40px">Action</th>
+      </tr>
+      <tr th:each="category : ${list}">
+        <td th:text="${category.id}"></td>
+        <td th:text="${category.categoryName}"></td>
+        <td th:if="${category.categoryStatus}"><span class="label label-success">Hiện</span></td>
+        <td th:unless="${category.categoryStatus}"><span class="label label-danger">Ẩn</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</div> -->
 
 							<div class="box-footer clearfix">
 								<ul class="pagination pagination-sm no-margin pull-right">
@@ -119,10 +104,10 @@
 								<table class="table table-condensed">
 									<tbody>
 										<tr>
-											<th style="width: 10px">#</th>
-											<th>Task</th>
-											<th>Progress</th>
-											<th style="width: 40px">Label</th>
+											<th style="width: 10px">ID</th>
+											<th>Category Name</th>
+											<th>Status</th>
+											<th style="width: 40px">Action</th>
 										</tr>
 										<tr>
 											<td>1.</td>
