@@ -34,12 +34,12 @@
 				<div class="col-md-6">
 					<div class="box box-primary">
 						<div class="box-header with-border">
-							<h3 class="box-title">Thêm danh mục</h3>
+							<h3 class="box-title">Sửa danh mục</h3>
 						</div>
 
 
-						<form role="form" method="post" th:action="@{/admin/add-category}"
-							th:object="${category}">
+						<form role="form" method="post" th:action="@{/admin/edit-category}" th:object="${category}">
+						<input type="hidden" class="form-control" id="exampleInputEmail1" placeholder="Nhập tên danh mục" th:field="*{id}">
 							<div class="box-body">
 								<div class="form-group">
 									<label for="exampleInputEmail1">Category Name</label> <input
@@ -67,7 +67,7 @@
 							</div>
 
 							<div class="box-footer">
-								<button type="submit" class="btn btn-primary">Submit</button>
+								<button type="submit" class="btn btn-primary">Update</button>
 							</div>
 						</form>
 					</div>

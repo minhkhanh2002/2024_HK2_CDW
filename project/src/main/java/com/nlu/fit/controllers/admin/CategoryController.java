@@ -6,10 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.nlu.fit.models.Category;
 import com.nlu.fit.services.CategoryService;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 
 
@@ -25,10 +29,38 @@ public class CategoryController {
 		model.addAttribute("list", list);
 		return "admin/category/index";
 	}
-	@RequestMapping("/add-category")
-	public String add() {
+	@GetMapping("/add-category")
+	public String add(Model model) {
+		Category category = new Category();
+		category.setCategoryStatus(true);
+		model.addAttribute("category", category);
 		return "admin/category/add";
 	}
 	
+	@PostMapping("/add-category")
+	public String save(@ModelAttribute("category") Category category) {
+		//TODO: process POST request
+		if (this.categoryService.create(category)) {
+		return "redirect:/admin/category";
+		} else 
+			return "admin/category/add";
+	}
+	
+	@GetMapping("/edit-category/{id}")
+	public String edit(Model model, @PathVariable("id") Integer id) {
+		
+		Category category = this.categoryService.findById(id);
+		model.addAttribute("category", category);
+		return "admin/category/edit";
+	}
+	
+	@PostMapping("/edit/category")
+	public String update(@ModelAttribute("category") Category category) {
+		//TODO: process POST request
+		if (this.categoryService.create(category)) {
+		return "redirect:/admin/category";
+		} else 
+			return "admin/category/add";
+	}
 	
 }
