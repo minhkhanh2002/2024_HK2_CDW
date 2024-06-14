@@ -14,6 +14,8 @@ import com.nlu.fit.models.Category;
 import com.nlu.fit.services.CategoryService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 
@@ -39,7 +41,7 @@ public class CategoryController {
 	
 	@PostMapping("/add-category")
 	public String save(@ModelAttribute("category") Category category) {
-		//TODO: process POST request
+		
 		if (this.categoryService.create(category)) {
 		return "redirect:/admin/category";
 		} else 
@@ -54,13 +56,22 @@ public class CategoryController {
 		return "admin/category/edit";
 	}
 	
-	@PostMapping("/edit/category")
+	@PostMapping("/edit-category")
 	public String update(@ModelAttribute("category") Category category) {
-		//TODO: process POST request
 		if (this.categoryService.create(category)) {
-		return "redirect:/admin/category";
-		} else 
+			return "redirect:/admin/category";
+		} else {
 			return "admin/category/add";
+		}
 	}
+	
+	@GetMapping("/delete-category/{id}")
+	public String delete( @PathVariable("id") Integer id) {
+		if (this.categoryService.delete(id)) {
+			return "redirect:/admin/category";
+			} else 
+				return "redirect:/admin/category";
+	}
+	
 	
 }

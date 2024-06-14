@@ -34,20 +34,24 @@ public class CategoryServiceImpl implements CategoryService{
 
 	@Override
 	public Category findById(Integer id) {
-		// TODO Auto-generated method stub
 		
 		return this.categoryRepository.findById(id).get();
 	}
 
 	@Override
-	public boolean delete(Category category) {
-		// TODO Auto-generated method stub
+	public boolean delete(Integer id) {
+		try {
+			this.categoryRepository.delete(findById(id));
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return false;
 	}
 
 	@Override
 	public boolean update(Category category) {
-		// TODO Auto-generated method stub
+		
 		try {
 			this.categoryRepository.save(category);
 			return true;
