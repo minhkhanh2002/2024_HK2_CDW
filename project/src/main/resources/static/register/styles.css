@@ -1,0 +1,53 @@
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('https://img6.thuthuatphanmem.vn/uploads/2022/03/04/anh-background-nha-dep-cho-teams_013005584.png'); /* Địa chỉ URL của ảnh */
+    background-size: cover; /* Để ảnh phủ toàn bộ màn hình */
+    background-repeat: no-repeat; /* Không lặp lại ảnh */
+    background-position: center; /* Căn giữa ảnh */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.9); /* Nền trắng với độ trong suốt */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-top: 10px;
+}
+
+input, select, button {
+    margin-top: 5px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.error {
+    color: red;
+    font-size: 0.9em;
+}

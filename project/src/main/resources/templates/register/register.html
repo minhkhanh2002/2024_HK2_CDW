@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://img6.thuthuatphanmem.vn/uploads/2022/03/04/anh-background-nha-dep-cho-teams_013005584.png'); /* Địa chỉ URL của ảnh */
+            background-size: cover; /* Để ảnh phủ toàn bộ màn hình */
+            background-repeat: no-repeat; /* Không lặp lại ảnh */
+            background-position: center; /* Căn giữa ảnh */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.9); /* Nền trắng với độ trong suốt */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-top: 10px;
+        }
+
+        input, select, button {
+            margin-top: 5px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form role="form" id="registrationForm" method="post" th:action="" th:object="${user}">
+            <h2>Registration Form</h2>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required th:field="*{userName}">
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required th:field="*{passWord}">
+            <span id="passwordError" class="error"></span>
+
+            <label for="confirmPassword">Confirm Password:</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" required>
+            <span id="confirmPasswordError" class="error"></span>
+
+            <label for="fullName">Full Name:</label>
+            <input type="text" id="fullName" name="fullName" required th:field="*{fullName}">
+
+            <label for="gender">Gender:</label>
+            <select id="gender" name="gender" required th:field="*{gender}">
+                <option value="">Select</option>
+                <option value="true">Male</option>
+                <option value="false">Female</option>
+            </select>
+
+            <label for="birthday">Birthday:</label>
+            <input type="date" id="birthday" name="birthday" required th:field="*{birthday}">
+
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" required th:field="*{address}">
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required th:field="*{email}">
+
+            <label for="cccd">CCCD:</label>
+            <input type="text" id="cccd" name="cccd" required th:field="*{cccd}">
+            <span id="cccdError" class="error"></span>
+
+            <label for="telephone">Telephone:</label>
+            <input type="tel" id="telephone" name="telephone" required th:field="*{telephone}">
+            <span id="telephoneError" class="error"></span>
+
+            <button type="submit">Register</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('password').addEventListener('input', validatePassword);
+        document.getElementById('confirmPassword').addEventListener('input', validateConfirmPassword);
+        document.getElementById('telephone').addEventListener('input', validateTelephone);
+        document.getElementById('cccd').addEventListener('input', validateCccd);
+
+        function validatePassword() {
+            const password = document.getElementById('password').value;
+            const passwordError = document.getElementById('passwordError');
+            const regex = /^(?=.*[A-Z])(?=.*\d).{7,}$/; // Hơn 6 ký tự, chứa ít nhất một chữ hoa và một số
+
+            if (!regex.test(password)) {
+                passwordError.textContent = "Password must be at least 7 characters long and contain at least one uppercase letter and one number.";
+            } else {
+                passwordError.textContent = "";
+            }
+        }
+
+        function validateConfirmPassword() {
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const confirmPasswordError = document.getElementById('confirmPasswordError');
+
+            if (password !== confirmPassword) {
+                confirmPasswordError.textContent = "Passwords do not match!";
+            } else {
+                confirmPasswordError.textContent = "";
+            }
+        }
+
+        function validateTelephone() {
+            const telephone = document.getElementById('telephone').value;
+            const telephoneError = document.getElementById('telephoneError');
+
+            if (telephone.length !== 10) {
+                telephoneError.textContent = "Telephone number must be exactly 10 digits.";
+            } else {
+                telephoneError.textContent = "";
+            }
+        }
+
+        function validateCccd() {
+            const cccd = document.getElementById('cccd').value;
+            const cccdError = document.getElementById('cccdError');
+
+            if (cccd.length !== 12) {
+                cccdError.textContent = "CCCD must be exactly 11 digits.";
+            } else {
+                cccdError.textContent = "";
+            }
+        }
+
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Get form values
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const fullName = document.getElementById('fullName').value;
+            const gender = document.getElementById('gender').value;
+            const birthday = document.getElementById('birthday').value;
+            const address = document.getElementById('address').value;
+            const email = document.getElementById('email').value;
+            const cccd = document.getElementById('cccd').value;
+            const telephone = document.getElementById('telephone').value;
+
+            // Validate password and confirm password
+            if (password !== confirmPassword) {
+                alert("Passwords do not match!");
+                return;
+            }
+
+            // Validate other fields as needed
+            if (!username || !password || !fullName || !gender || !birthday || !address || !email || !cccd || !telephone) {
+                alert("Please fill out all fields!");
+                return;
+            }
+
+            // Additional validations can be added here
+
+            // If all validations pass, you can proceed with form submission
+            alert("Registration successful!");
+
+            // You can now submit the form data to the server or handle it as needed
+            // For example, using fetch to send a POST request to your server:
+            // fetch('/your-api-endpoint', {
+            //     method: 'POST',
+            //     headers: {
+            //         'Content-Type': 'application/json'
+            //     },
+            //     body: JSON.stringify({
+            //         username,
+            //         password,
+            //         fullName,
+            //         gender,
+            //         birthday,
+            //         address,
+            //         email,
+            //         cccd,
+            //         telephone
+            //     })
+            // }).then(response => response.json())
+            //   .then(data => console.log(data))
+            //   .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>

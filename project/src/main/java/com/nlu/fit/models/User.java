@@ -9,6 +9,8 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -39,6 +41,8 @@ public class User {
 	private String cccd;
 	@Column(name = "telephone")
 	private String telephone;
+	@Column(name = "creation_date")
+	private String creationDate;
 	
 	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
 	private Set<UserRole> userRoles;
@@ -51,7 +55,8 @@ public class User {
 
 
 	public User(Long id, String userName, String passWord, Boolean enabled, String fullName, Boolean gender,
-			Date birthday, String address, String email, String cccd, String telephone, Set<UserRole> userRoles) {
+			Date birthday, String address, String email, String cccd, String telephone, String creationDate,
+			Set<UserRole> userRoles) {
 		super();
 		this.id = id;
 		this.userName = userName;
@@ -64,6 +69,26 @@ public class User {
 		this.email = email;
 		this.cccd = cccd;
 		this.telephone = telephone;
+		this.creationDate = creationDate;
+		this.userRoles = userRoles;
+	}
+	
+
+
+	public User(String userName, String passWord, Boolean enabled, String fullName, Boolean gender, Date birthday,
+			String address, String email, String cccd, String telephone, String creationDate, Set<UserRole> userRoles) {
+		super();
+		this.userName = userName;
+		this.passWord = passWord;
+		this.enabled = enabled;
+		this.fullName = fullName;
+		this.gender = gender;
+		this.birthday = birthday;
+		this.address = address;
+		this.email = email;
+		this.cccd = cccd;
+		this.telephone = telephone;
+		this.creationDate = creationDate;
 		this.userRoles = userRoles;
 	}
 
@@ -178,6 +203,16 @@ public class User {
 	}
 
 
+	public String getCreationDate() {
+		return creationDate;
+	}
+
+
+	public void setCreationDate(String creationDate) {
+		this.creationDate = creationDate;
+	}
+
+
 	public Set<UserRole> getUserRoles() {
 		return userRoles;
 	}
@@ -187,5 +222,7 @@ public class User {
 		this.userRoles = userRoles;
 	}
 
+
+	
 
 	}
